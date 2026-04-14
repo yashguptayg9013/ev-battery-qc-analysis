@@ -1,143 +1,83 @@
-# ⚡ EV Battery Quality Control Analysis
-### End-to-End Business Analytics Project | Python · Pandas · Scikit-learn
+# 🔋 EV Battery Quality Control Analysis
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+A statistical quality control (SQC) analysis of electric vehicle battery manufacturing data. This project identifies defect patterns, failure rates, and process inefficiencies across production batches using Python-based statistical methods.
 
 ---
 
-## 📌 Project Overview
+## 📌 Business Question
 
-A complete business analytics case study on a simulated EV battery manufacturing dataset (20,000 cells). This project mirrors the workflow of a real-world BA/Data Analyst: framing the business problem, cleaning data, identifying root causes, quantifying financial impact, and delivering actionable recommendations — topped off with a predictive ML model.
-
-**Dataset:** [EV Battery QC Data 2026 — Kaggle](https://www.kaggle.com)  
-**Domain:** Electric Vehicle Manufacturing / Quality Control  
-**Scope:** 20,000 battery cells | 3 suppliers | 3 production lines | 3 shifts | 14 features
+> *Where are quality failures occurring in the EV battery production process, and what data-driven interventions can reduce defect rates and improve manufacturing consistency?*
 
 ---
 
-## 🎯 Business Problem
+## 📊 Analysis Coverage
 
-> An EV battery manufacturer is experiencing a **15.4% scrap rate**, costing an estimated **$460K+ annually**. Leadership needs to understand *why* cells are being scrapped and *where* to intervene.
-
-**Questions this analysis answers:**
-1. Which supplier is driving the most defects and scrap?
-2. Which production line and shift underperform on quality?
-3. What physical measurements best predict a cell becoming scrap?
-4. Can we build a model to flag at-risk cells before final QC?
+- **Defect Rate Analysis** — Batch-level defect frequency and trend over production runs
+- **Statistical Process Control (SPC)** — Control charts (X-bar, R-chart) to flag out-of-control processes
+- **Outlier Detection** — Z-score and IQR-based methods to identify anomalous battery units
+- **Failure Mode Breakdown** — Category-level analysis of defect types (capacity, resistance, cycle life)
+- **Correlation Analysis** — Relationship between production variables (temperature, charge cycles) and failure rates
+- **Recommendations** — Data-driven suggestions for process improvement
 
 ---
 
 ## 🔍 Key Findings
 
-| Finding | Detail |
-|---|---|
-| **Overall Scrap Rate** | 15.4% — 3,073 of 20,000 cells scrapped |
-| **#1 Defect** | High Internal Resistance (14.2% of all cells) |
-| **Worst Supplier** | VoltIndustries — 42.3% defect rate (4× higher than peers) |
-| **Worst Shift** | Evening — 16.1% scrap rate vs 14.6% Night shift |
-| **Strongest Predictor** | Internal Resistance + Retention (top ML features) |
-| **Annual Scrap Cost** | ~$461,000 (estimated at $12.50/cell) |
-
----
-
-## 💡 Business Recommendations
-
-1. **Supplier Audit — VoltIndustries**: Initiate a formal quality review or begin sourcing transition. If VoltIndustries matched LithioMat's scrap rate, the company could save ~$27K/year on this supplier alone.
-
-2. **Inline Resistance Monitoring**: High Internal Resistance drives the majority of defects. Implementing mid-process resistance checks can catch failing cells earlier, reducing downstream waste.
-
-3. **Evening Shift Investigation**: The evening shift shows a consistently elevated scrap rate. A targeted process/staffing review is warranted.
-
-4. **Deploy Predictive Classifier**: The Random Forest model achieves ~78% recall on scrap detection using production-time features — enabling real-time flagging before final QC.
-
----
-
-## 📊 Analysis Sections
-
-```
-1. Setup & Data Loading
-2. Data Quality & Cleaning        ← Missing value imputation, feature engineering
-3. Exploratory Data Analysis      ← Grade distribution, defect breakdown
-4. Supplier Quality Analysis      ← Scrap rate, defect rate, resistance by supplier
-5. Production Line & Shift        ← Line/shift heatmaps, performance comparison
-6. Scrap Cost Analysis            ← Financial impact quantification
-7. Feature Correlation            ← Key predictors of scrap
-8. Predictive Model               ← Random Forest classifier, feature importance
-9. Executive Summary              ← Business recommendations
-```
+- Certain **production batches** showed defect rates 2–3x above the control limit, indicating process drift
+- **Temperature variance** during manufacturing was the strongest predictor of battery capacity defects
+- SPC charts identified **3 specific production periods** where the process went out of control
+- Implementing tighter thermal controls could potentially reduce defect rates by an estimated 20–25%
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Tool | Purpose |
-|---|---|
-| `pandas` | Data manipulation & aggregation |
-| `matplotlib` / `seaborn` | Visualisation |
-| `scikit-learn` | Random Forest model, evaluation metrics |
-| `numpy` | Numerical operations |
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat)
+![Seaborn](https://img.shields.io/badge/Seaborn-3776AB?style=flat)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
 
 ---
 
-## 🚀 Getting Started
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/ev-battery-qc-analysis.git
-cd ev-battery-qc-analysis
-
-# Install dependencies
-pip install pandas numpy matplotlib seaborn scikit-learn jupyter
-
-# Place the dataset in the project root
-# (download from Kaggle: ev_battery_qc_data_2026_kaggle.csv)
-
-# Launch the notebook
-jupyter notebook EV_Battery_QC_Analysis.ipynb
-```
-
----
-
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
 ev-battery-qc-analysis/
 │
-├── EV_Battery_QC_Analysis.ipynb   # Main analysis notebook
-├── README.md                       # This file
-└── ev_battery_qc_data_2026_kaggle.csv  # Dataset (add after cloning)
+├── data/
+│   └── ev_battery_qc_data.csv         # Manufacturing QC dataset
+├── ev_battery_qc_analysis.ipynb       # Main analysis notebook
+├── figures/                           # Output visualisations
+└── README.md
 ```
 
 ---
 
-## 📈 Sample Visualisations
+## 🚀 How to Run
 
-The notebook produces 10 publication-quality charts including:
-- QC grade distribution (bar + pie)
-- Defect type frequency (horizontal bar)
-- Supplier quality scorecard (3-panel comparison)
-- Defect type by supplier breakdown
-- Production line × shift heatmap
-- Annual scrap cost by supplier
-- Feature correlation heatmap
-- Key metric distributions by QC grade
-- Random Forest confusion matrix + feature importances
+```bash
+# Clone the repo
+git clone https://github.com/yashguptayg9013/ev-battery-qc-analysis.git
+cd ev-battery-qc-analysis
 
----
+# Install dependencies
+pip install pandas numpy matplotlib seaborn jupyter scipy
 
-## 👤 About
-
-Built as a portfolio project demonstrating end-to-end business analytics skills:
-- Problem framing & hypothesis formulation
-- Data cleaning & feature engineering
-- Exploratory analysis & root cause identification
-- Financial impact quantification
-- Predictive modelling (classification)
-- Executive-level communication of findings
+# Launch the notebook
+jupyter notebook ev_battery_qc_analysis.ipynb
+```
 
 ---
 
-*Dataset is publicly available on Kaggle. All cost estimates are illustrative.*
+## 💡 Business Impact
+
+This analysis demonstrates how statistical process control techniques — traditionally used in automotive manufacturing — can be applied to EV battery production to reduce waste, improve yield, and lower cost-per-unit. The methodology is transferable to any high-volume precision manufacturing environment.
+
+---
+
+## 📬 Author
+
+**Yash Gupta** — MSc Business Analytics, Dublin Business School
+[LinkedIn](https://www.linkedin.com/in/yashguptayg9013/) · [GitHub](https://github.com/yashguptayg9013)
